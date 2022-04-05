@@ -6,11 +6,11 @@ import "@chainlink/contracts/src/v0.6/interfaces/AggregatorV3Interface.sol";
 
 contract Lottery{
     address payable[] public players;
-    uint256 usdEntryFees;
+    uint256 usdEntryFee;
     AggregatorV3Interface internal ethUsdPriceFeed;
 
     constructor(address _priceFeedAddress) public {
-        usdEntryFees = 50 * (10**18);
+        usdEntryFee = 50 * (10**18);
         ethUsdPriceFeed = AggregatorV3Interface(_priceFeedAddress);
     }
 
@@ -21,9 +21,9 @@ contract Lottery{
     function getEntranceFee() public view returns(uint256) {
 
         (,int price, ,,)= ethUsdPriceFeed.latestRoundData();
-        uint256 adjustedPrice = uint256(price)*10**10;//made it equlavalnt to wei
+        uint256 adjustedPrice = uint256(price) * 10**10; //made it equlavalnt to wei
 
-        uint256 costToEnter = (usdEntryFees * 10 ** 18)/adjustedPrice;
+        uint256 costToEnter = (usdEntryFee*10 ** 18) / adjustedPrice;
         return costToEnter;
 
     }
