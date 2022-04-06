@@ -43,6 +43,14 @@ contract Lottery is Ownable{
 
     }
     function endLottery() public onlyOwner {
-        
+        uint256 (keccak256(
+            abi.encodePacked(
+                nonce,
+                msg.sender,
+                block.difficulty,
+                block.timestamp
+            )
+        )
+    )%players.length;
     }
 }
