@@ -9,3 +9,5 @@ add our own coustom mainnet-fork using alchemy
     brownie networks add development mainnet-fork cmd=ganache-cli host=http://127.0.0.1 fork=https://eth-mainnet.alchemyapi.io/v2/<key> accounts=10 mnemonic=brownie port=8545
 
 import openzepplin for onlyowner modifier
+
+chainlink VRF to get a random number

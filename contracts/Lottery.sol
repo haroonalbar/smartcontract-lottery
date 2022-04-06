@@ -43,7 +43,6 @@ contract Lottery is Ownable{
 
     }
     function endLottery() public onlyOwner {
-        require(lottery_state == LOTTERY_STATE.PROCESSING_WINNER);
-        lottery_state = LOTTERY_STATE.CLOSED;
+        
     }
 }
