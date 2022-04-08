@@ -79,5 +79,6 @@ contract Lottery is VRFConsumerBase, Ownable {
         require(_randomness > 0, "random-not-found");
         uint256 indexOfWinner = _randomness % players.length;
         recentWinner = players[indexOfWinner];
+        recentWinner.transfer(address(this).balance);
     }
 }
