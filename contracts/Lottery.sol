@@ -8,6 +8,8 @@ import "@chainlink/contracts/src/v0.6/VRFConsumerBase.sol";
 
 contract Lottery is VRFConsumerBase, Ownable {
     address payable[] public players;
+    address payable public recentWinner;
+    uint256 randomness;
     uint256 usdEntryFee;
     AggregatorV3Interface internal ethUsdPriceFeed;
 
@@ -21,7 +23,6 @@ contract Lottery is VRFConsumerBase, Ownable {
     LOTTERY_STATE public lottery_state;
     uint256 public fee;
     bytes32 public keyhash;
-    address payable public recentWinner;
 
     constructor(
         address _priceFeedAddress,
@@ -80,5 +81,9 @@ contract Lottery is VRFConsumerBase, Ownable {
         uint256 indexOfWinner = _randomness % players.length;
         recentWinner = players[indexOfWinner];
         recentWinner.transfer(address(this).balance);
+        //Reset
+        players = new address payable[](0);
+        lottery_state = LOTTERY_STATE.CLOSED;
+        randomness = _randomness;
     }
 }
