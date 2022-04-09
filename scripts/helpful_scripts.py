@@ -4,10 +4,14 @@ FORKED_LOCAL_ENVITONMENTS = ["mainnet-fork", "mainnet-fork-dev"]
 LOCAL_BLOCKCAHIN_ENVIRONMENT = ["development", "dog"]
 
 
-def get_account():
+def get_account(index=None, id=None):
     # accounts[0]
     # accounts.add("env")
     # accounts.load("id")
+    if index:
+        return accounts[index]
+    if id:
+        return accounts.load(id)
     if (
         network.show_active() in LOCAL_BLOCKCAHIN_ENVIRONMENT
         or network.show_active() in FORKED_LOCAL_ENVITONMENTS
