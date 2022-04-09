@@ -1,5 +1,8 @@
+from scripts.helpful_scripts import get_account
+
+
 def deploy_lottery():
-    pass
+    account = get_account()
 
 
 def main():
