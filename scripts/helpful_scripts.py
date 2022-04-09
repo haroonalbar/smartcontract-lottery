@@ -5,10 +5,13 @@ LOCAL_BLOCKCAHIN_ENVIRONMENT = ["development", "dog"]
 
 
 def get_account():
+    # accounts[0]
+    # accounts.add("env")
+    # accounts.load("id")
     if (
         network.show_active() in LOCAL_BLOCKCAHIN_ENVIRONMENT
         or network.show_active() in FORKED_LOCAL_ENVITONMENTS
     ):
         return accounts[0]
-    else:
-        return accounts.add(config["wallets"]["from_key"])
+    # default
+    return accounts.add(config["wallets"]["from_key"])

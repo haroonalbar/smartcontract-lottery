@@ -13,3 +13,5 @@ import openzepplin for onlyowner modifier
 chainlink VRF to get a random number
 
 create deploy_lottery.py
+
+brownie accounts list 'getting accounts already exists'
