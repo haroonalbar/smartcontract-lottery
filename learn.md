@@ -11,3 +11,5 @@ add our own coustom mainnet-fork using alchemy
 import openzepplin for onlyowner modifier
 
 chainlink VRF to get a random number
+
+create deploy_lottery.py
