@@ -39,3 +39,12 @@ def get_contract(contract_name):
         if len(contract_type) <= 0:
             #MockV3Aggregator.length
             deploy_mocks()
+
+DECIMALS = 8
+INITIAL_VALUE = 200000000000
+#10**8
+
+def deploy_mocks(decinals = DECIMALS,initial_value = INITIAL_VALUE):
+    account = get_account()
+    mock_price_feed = MockV3Aggregator.deploy(decinals,initial_value,{"from": account})
+    print ("Deployed!")
