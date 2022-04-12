@@ -1,4 +1,4 @@
-from brownie import accounts, config, network , MockV3Aggregator
+from brownie import accounts, config, network , MockV3Aggregator , Contract
 
 FORKED_LOCAL_ENVITONMENTS = ["mainnet-fork", "mainnet-fork-dev"]
 LOCAL_BLOCKCAHIN_ENVIRONMENT = ["development", "dog"]
@@ -39,6 +39,16 @@ def get_contract(contract_name):
         if len(contract_type) <= 0:
             #MockV3Aggregator.length
             deploy_mocks()
+        contract = contract_type[-1]
+        # MockV3Aggregator[-1]
+    else:
+        contract_address = config["networks"][network.show_active()][contract_name]
+        # address
+        # abi
+        contract = Contract.from_abi(contract_type.name,contract_address,contract_type.abi)
+        # MockV3Aggregator.abi
+    return contract
+
 
 DECIMALS = 8
 INITIAL_VALUE = 200000000000
