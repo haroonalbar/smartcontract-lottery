@@ -1,4 +1,4 @@
-from brownie import accounts, config, network
+from brownie import accounts, config, network , MockV3Aggregator
 
 FORKED_LOCAL_ENVITONMENTS = ["mainnet-fork", "mainnet-fork-dev"]
 LOCAL_BLOCKCAHIN_ENVIRONMENT = ["development", "dog"]
@@ -16,10 +16,13 @@ def get_account(index=None, id=None):
         network.show_active() in LOCAL_BLOCKCAHIN_ENVIRONMENT
         or network.show_active() in FORKED_LOCAL_ENVITONMENTS
     ):
-        return accounts[0]
+         return accounts[0]
     # default
     return accounts.add(config["wallets"]["from_key"])
 
+contract_to_mock = contract_to_mock{
+    "eth_usd_price_feed": MockV3Aggregator
+}
 
 def get_contract(contract_name):
     """This function will grab the contract addresses from the brownie config
@@ -31,3 +34,8 @@ def get_contract(contract_name):
             brownie.network.contract.ProjectContract: The most recently deployed
             version of this contract.
     """
+    contract_type = contract_to_mock[contract_name]
+    if network.show_active() in LOCAL_BLOCKCAHIN_ENVIRONMENT:
+        if len(contract_type) <= 0:
+            #MockV3Aggregator.length
+            deploy_mocks()
